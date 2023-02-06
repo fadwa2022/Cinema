@@ -18,29 +18,29 @@
   // Get row count
   $num = $result->rowCount();
 
-  // Check if any user
+  // Check if any hall
   if($num > 0) {
-    // user array
-    $movies_arr = array();
+    // hall array
+    $halls_arr = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
 
-      $user_item = array(
+      $hall_item = array(
         'id' => $id,
         'label' => $label,
         'movie' => $movie,
       );
 
       // Push to "data"
-      array_push($movies_arr, $movie_item);
+      array_push($halls_arr, $hall_item);
     }
 
     // Turn to JSON & output
-    echo json_encode($movies_arr);
+    echo json_encode($halls_arr);
 
   } else {
-    // No Posts
+    // No hall
     echo json_encode(
       array('message' => 'No hall Found')
     );
