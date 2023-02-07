@@ -18,6 +18,7 @@
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
 
+  
   $user->title = $data->title;
   $user->image = $data->image;
   $user->description = $data->description;
