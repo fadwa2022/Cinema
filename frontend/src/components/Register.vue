@@ -19,7 +19,7 @@
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">Sign up now</h2>
-          <form @submit="submitForm" >
+          <form @submit.prevent="submitForm" >
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row">
               <div class="col-md-12 mb-4">
@@ -91,10 +91,10 @@ export default {
     }
   },
   methods: {
-    async submitForm() {
+     submitForm() {
       try {
-        const response = await axios.post('http://localhost/cinema/backend/api/user/create.php', this.formData)
-        console.log(response.data)
+        const response = axios.post('http://localhost/cinema/backend/api/user/create.php', this.formData)
+        console.log(this.formData)
       } catch (error) {
         console.error(error)
       }
