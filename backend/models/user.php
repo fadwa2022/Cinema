@@ -18,7 +18,6 @@ class User
   {
     $this->conn = $db;
   }
-
   // Get user
   public function read()
   {
@@ -33,10 +32,8 @@ class User
 
     return $stmt;
   }
-
   // Get Single user
-  public function read_single()
-  {
+  public function read_single(){
     // Create query
     $query = 'SELECT * FROM `users` WHERE `id`= ? LIMIT 0,1';
 
@@ -60,10 +57,8 @@ class User
     $this->role = $row['role'];
 
 }
-
   // Create user
-  public function create()
-  {
+  public function create(){
     // Create query
     $query = 'INSERT INTO users SET identifier = :identifier, full_name = :full_name, email = :email, password = :password';
 
@@ -92,10 +87,8 @@ class User
 
     return false;
   }
-
   // update user
-  public function update()
-  {
+  public function update(){
     // Create query
     $query = 'UPDATE `users` SET `full_name`= :full_name ,`email`= :email ,`password`=:password  WHERE id=:id';
 
