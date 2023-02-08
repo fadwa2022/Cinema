@@ -23,13 +23,13 @@
        
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" />
+              <input type="email" id="form3Example3" class="form-control"  v-model="email"/>
               <label class="form-label" for="form3Example3">Email address</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="form3Example4" class="form-control" />
+              <input type="password" id="form3Example4" class="form-control" v-model="password" />
               <label class="form-label" for="form3Example4">Password</label>
             </div>
 
@@ -50,8 +50,15 @@
 </template>
 <script>
 
+
 export default {
-  
+  name:"Loginform",
+  data(){
+    return{
+      password:'',
+      email:''
+    }
+  }
 }
 </script>
 

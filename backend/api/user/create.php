@@ -26,7 +26,7 @@
   // Create post
   if($user->create()) {
     echo json_encode(
-      array('message' => 'user Created')
+      array('message' => 'user Created : '.$user->identifier)
     );
   } else {
     echo json_encode(

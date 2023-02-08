@@ -14,13 +14,12 @@
             <ul>
               <li><router-link to="/" class="nav-link scrollto active "><a href="">Home</a></router-link></li>
               <li><router-link to="/#about" class="nav-link scrollto "><a href="">About</a></router-link></li>
-              <li><router-link to="/#speakers" class="nav-link scrollto "><a href="">Speakers</a></router-link></li>
-              <li><router-link to="/#schedule" class="nav-link scrollto "><a href="">Schedule</a></router-link></li>
+              <li><router-link to="/#speakers" class="nav-link scrollto "><a href="">ACTORS</a></router-link></li>
               <li><router-link to="/#venue" class="nav-link scrollto "><a href="">Venue</a></router-link></li>
-              <li><router-link to="/#hotels" class="nav-link scrollto "><a href="">Hotels</a></router-link></li>
               <li><router-link to="/#supporters" class="nav-link scrollto "><a href="">Sponsors</a></router-link></li>
               <li><router-link to="/#supporters" class="nav-link scrollto "><a href="">Contact</a></router-link></li>
               <li><router-link to="/Login" class="nav-link scrollto "><a href="">Login</a></router-link></li>
+              <li><router-link to="/register" class="nav-link scrollto "><a href="">Register</a></router-link></li>
 
               <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
