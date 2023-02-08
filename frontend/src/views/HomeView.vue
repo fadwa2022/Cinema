@@ -2,10 +2,8 @@
   <div class="home">
     <Hero/>
     <About/>
-    <Speakers/>
-    <Schedule/>
+    <Actors/>
     <Venue/>
-    <Hotels/>
     <Sponsors/>
     <Subscribe/>
     <Ticket/>
@@ -17,10 +15,8 @@
 // @ is an alias to /src
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Speakers from '@/components/Speakers'
-import Schedule from '@/components/Schedule'
+import Actors from '@/components/Actors'
 import Venue from '@/components/Venue'
-import Hotels from '@/components/Hotels'
 import Sponsors from '@/components/Sponsors'
 import Subscribe from '@/components/Subscribe'
 import Ticket from '@/components/Ticket'
@@ -31,10 +27,8 @@ export default {
   components: {
    Hero,
    About,
-   Speakers,
-   Schedule,
+   Actors,
    Venue,
-   Hotels,
    Sponsors,
    Subscribe,
    Ticket,

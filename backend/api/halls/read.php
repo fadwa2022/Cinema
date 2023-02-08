@@ -30,6 +30,11 @@
         'id' => $id,
         'label' => $label,
         'movie' => $movie,
+        'title' => $title,
+        'image' => $image,
+        'description' => $description,
+
+
       );
 
       // Push to "data"

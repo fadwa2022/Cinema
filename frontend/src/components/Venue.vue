@@ -19,7 +19,7 @@
               <div class="col-lg-6 venue-info">
                 <div class="row justify-content-center">
                   <div class="col-11 col-lg-8 position-relative">
-                    <h3>Downtown Conference Center, New York</h3>
+                    <h3>VIVEZ L'EXPÉRIENCE CINÉMATOGRAPHIQUE ULTIME,MAROC</h3>
                     <p>Iste nobis eum sapiente sunt enim dolores labore accusantium autem. Cumque beatae ipsam. Est quae sit qui voluptatem corporis velit. Qui maxime accusamus possimus. Consequatur sequi et ea suscipit enim nesciunt quia velit.</p>
                   </div>
                 </div>
@@ -41,16 +41,16 @@
     
               <div class="col-lg-3 col-md-4">
                 <div class="venue-gallery">
-                  <a href="assets/img/venue-gallery/2.jpg" class="glightbox" data-gall="venue-gallery">
-                    <img src="assets/img/venue-gallery/2.jpg" alt="" class="img-fluid">
+                  <a href="assets/img/venue-gallery/alex-litvin-MAYsdoYpGuk-unsplash.jpg" class="glightbox" data-gall="venue-gallery">
+                    <img src="assets/img/venue-gallery/alex-litvin-MAYsdoYpGuk-unsplash.jpg" alt="" class="img-fluid">
                   </a>
                 </div>
               </div>
     
               <div class="col-lg-3 col-md-4">
                 <div class="venue-gallery">
-                  <a href="assets/img/venue-gallery/3.jpg" class="glightbox" data-gall="venue-gallery">
-                    <img src="assets/img/venue-gallery/3.jpg" alt="" class="img-fluid">
+                  <a href="assets/img/venue-gallery/felix-mooneeram-evlkOfkQ5rE-unsplash.jpg" class="glightbox" data-gall="venue-gallery">
+                    <img src="assets/img/venue-gallery/felix-mooneeram-evlkOfkQ5rE-unsplash.jpg" alt="" class="img-fluid">
                   </a>
                 </div>
               </div>
@@ -65,32 +65,32 @@
     
               <div class="col-lg-3 col-md-4">
                 <div class="venue-gallery">
-                  <a href="assets/img/venue-gallery/5.jpg" class="glightbox" data-gall="venue-gallery">
-                    <img src="assets/img/venue-gallery/5.jpg" alt="" class="img-fluid">
+                  <a href="assets/img/venue-gallery/jake-hills-23LET4Hxj_U-unsplash.jpg" class="glightbox" data-gall="venue-gallery">
+                    <img src="assets/img/venue-gallery/jake-hills-23LET4Hxj_U-unsplash.jpg" alt="" class="img-fluid">
                   </a>
                 </div>
               </div>
     
               <div class="col-lg-3 col-md-4">
                 <div class="venue-gallery">
-                  <a href="assets/img/venue-gallery/6.jpg" class="glightbox" data-gall="venue-gallery">
-                    <img src="assets/img/venue-gallery/6.jpg" alt="" class="img-fluid">
+                  <a href="assets/img/venue-gallery/krists-luhaers-AtPWnYNDJnM-unsplash.jpg" class="glightbox" data-gall="venue-gallery">
+                    <img src="assets/img/venue-gallery/krists-luhaers-AtPWnYNDJnM-unsplash.jpg" alt="" class="img-fluid">
                   </a>
                 </div>
               </div>
     
               <div class="col-lg-3 col-md-4">
                 <div class="venue-gallery">
-                  <a href="assets/img/venue-gallery/7.jpg" class="glightbox" data-gall="venue-gallery">
-                    <img src="assets/img/venue-gallery/7.jpg" alt="" class="img-fluid">
+                  <a href="assets/img/venue-gallery/simon-ray-nLl5sJnElxY-unsplash.jpg" class="glightbox" data-gall="venue-gallery">
+                    <img src="assets/img/venue-gallery/simon-ray-nLl5sJnElxY-unsplash.jpg" alt="" class="img-fluid">
                   </a>
                 </div>
               </div>
     
               <div class="col-lg-3 col-md-4">
                 <div class="venue-gallery">
-                  <a href="assets/img/venue-gallery/8.jpg" class="glightbox" data-gall="venue-gallery">
-                    <img src="assets/img/venue-gallery/8.jpg" alt="" class="img-fluid">
+                  <a href="assets/img/venue-gallery/felipe-bustillo-4VDRCoNuvE0-unsplash.jpg" class="glightbox" data-gall="venue-gallery">
+                    <img src="assets/img/venue-gallery/felipe-bustillo-4VDRCoNuvE0-unsplash.jpg" alt="" class="img-fluid">
                   </a>
                 </div>
               </div>
@@ -111,5 +111,7 @@ export default {
 
 
 <style scoped>
-
+img { 
+  height: 20em;
+}
 </style>

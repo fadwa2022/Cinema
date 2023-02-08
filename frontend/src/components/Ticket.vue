@@ -9,20 +9,15 @@
               <p>Velit consequatur consequatur inventore iste fugit unde omnis eum aut.</p>
             </div>
     
-            <div class="row">
-              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="row" >
+              <div v-for="hall in hall" :key="hall.id" class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="card mb-5 mb-lg-0">
                   <div class="card-body">
-                    <h5 class="card-title text-muted text-uppercase text-center">Standard Access</h5>
-                    <h6 class="card-price text-center">$150</h6>
+                    <h5 class="card-title text-muted text-uppercase text-center">{{ hall.title }}</h5>
+                    <h6 class="card-price text-center">$15</h6>
                     <hr>
                     <ul class="fa-ul">
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
-                      <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Community Access</li>
-                      <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
-                      <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
+                  <img :src="hall.image" :alt="hall.title" class="img-fluid" id="img">
                     </ul>
                     <hr>
                     <div class="text-center">
@@ -31,50 +26,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="card mb-5 mb-lg-0">
-                  <div class="card-body">
-                    <h5 class="card-title text-muted text-uppercase text-center">Pro Access</h5>
-                    <h6 class="card-price text-center">$250</h6>
-                    <hr>
-                    <ul class="fa-ul">
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
-                      <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Workshop Access</li>
-                      <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>After Party</li>
-                    </ul>
-                    <hr>
-                    <div class="text-center">
-                      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="pro-access">Buy Now</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Pro Tier -->
-              <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title text-muted text-uppercase text-center">Premium Access</h5>
-                    <h6 class="card-price text-center">$350</h6>
-                    <hr>
-                    <ul class="fa-ul">
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Regular Seating</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Coffee Break</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Custom Badge</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>Workshop Access</li>
-                      <li><span class="fa-li"><i class="fa fa-check"></i></span>After Party</li>
-                    </ul>
-                    <hr>
-                    <div class="text-center">
-                      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="premium-access">Buy Now</button>
-                    </div>
-    
-                  </div>
-                </div>
-              </div>
+            
             </div>
     
           </div>
@@ -118,9 +70,30 @@
 </template>
 <script>
 
+import axios from 'axios';
+ 
 export default {
-  
+  data() {
+    return {
+      hall: []
+    };
+  },
+ methods: {
+    getDataFromAPI() {
+      axios.get('http://localhost/cinema/backend/api/halls/read.php')
+        .then(response => {
+          this.hall = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  },
+  mounted() {
+    this.getDataFromAPI();
+  }
 }
+
 </script>
 
 

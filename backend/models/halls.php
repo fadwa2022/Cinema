@@ -8,7 +8,9 @@ class Halls
     public $id;
     public $label;
     public $movie;
-
+    public $title;
+    public $image;
+    public $description;
 
     // Constructor with DB
     public function __construct($db)
@@ -20,7 +22,7 @@ class Halls
     public function read()
     {
         // Create query
-        $query = 'SELECT * FROM `halls`';
+        $query = 'SELECT * FROM halls p, movies m WHERE p.movie = m.id';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -52,7 +54,6 @@ class Halls
         $this->label = $row['label'];
         $this->movie = $row['movie'];
         $this->id = $row['id'];
-       
     }
 
     // Create user
