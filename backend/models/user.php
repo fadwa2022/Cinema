@@ -3,7 +3,6 @@ class User
 {
   // DB stuff
   private $conn;
-  private $table = 'users';
 
   // Post Properties
   public $id;
@@ -19,8 +18,7 @@ class User
     $this->conn = $db;
   }
   // Get user
-  public function read()
-  {
+  public function read(){
     // Create query
     $query ='SELECT * FROM `users`';
 
@@ -31,7 +29,7 @@ class User
     $stmt->execute();
 
     return $stmt;
-  }
+}
   // Get Single user
   public function read_single(){
     // Create query
@@ -86,7 +84,7 @@ class User
     printf("Error: %s.\n", $stmt->error);
 
     return false;
-  }
+}
   // update user
   public function update(){
     // Create query
@@ -116,7 +114,7 @@ class User
     printf("Error: %s.\n", $stmt->error);
 
     return false;
-  }
+}
   // Delete user
   public function delete() {
     // Create query
