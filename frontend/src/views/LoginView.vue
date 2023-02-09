@@ -49,17 +49,41 @@
     </div>
 </template>
 <script>
+
+import axios from 'axios';
+ 
+export default {
+  data() {
+    return {
+      hall: []
+    };
+  },
+ methods: {
+    getDataFromAPI() {
+      axios.get('http://localhost/cinema/backend/api/halls/read.php')
+        .then(response => {
+          this.hall = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  },
+  mounted() {
+    this.getDataFromAPI();
+  }
 //local storage
-localStorage.setItem('casr','20')
-localStorage.removeItem('casr')
-document.cookie=`voiture=audi ;exires=${new Date(2020, 11, 17).toUTCString()}`
-document.cookie=`voiture= ;exires=${new Date(0).toUTCString()}`
+// localStorage.setItem('casr','20')
+// localStorage.removeItem('casr')
+// document.cookie=`voiture=audi ;exires=${new Date(2020, 11, 17).toUTCString()}`
+// document.cookie=`voiture= ;exires=${new Date(0).toUTCString()}`
 
-export default { 
+// export default { 
 
 
 
-}
+//
+ }
 </script>
 
 

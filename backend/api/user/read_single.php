@@ -14,19 +14,20 @@
   $user = new User($db);
 
   // Get ID
-  $user->id = isset($_GET['id']) ? $_GET['id'] : die();
+  // $user->id = isset($_GET['id']) ? $_GET['id'] : die();
+  $data = json_decode(file_get_contents("php://input"));
+  
+  $user->email = $data->email;
+  $user->password = $data->password;
 
   // Get post
   $user->read_single();
 
   // Create array
   $user_arr = array(
-    'id' => $user->id,
     'identifier' => $user->identifier,
     'full_name ' => $user->full_name ,
     'email' => $user->email,
-    'password' => $user->password,
-    'role' => $user->role
   );
 
   // Make JSON

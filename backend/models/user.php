@@ -35,14 +35,12 @@ class User
   public function read_single()
   {
     // Create query
-    $query = 'SELECT * FROM `users` WHERE `id`= ? LIMIT 0,1';
+    $query = 'SELECT * FROM `users` WHERE `email` like ? LIMIT 0,1';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
-
     // Bind ID
-    $stmt->bindParam(1, $this->id);
-
+    $stmt->bindParam(1, $this->email);
     // Execute query
     $stmt->execute();
 
@@ -53,8 +51,15 @@ class User
     $this->full_name = $row['full_name'];
     $this->email = $row['email'];
     $this->id = $row['id'];
-    $this->password = $row['password'];
-    $this->role = $row['role'];
+    // $this->password = $row['password'];    
+    $hash_password = $row['password'];
+
+    if (password_verify($this->password, $hash_password)) {
+        return $row;
+    } else {
+        return false;
+    }
+
   }
   // Create user
   public function create()
