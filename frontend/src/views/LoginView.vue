@@ -34,7 +34,7 @@
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn buy-tickets scrollto">
+            <button type="submit" class="btn buy-tickets scrollto" @click="login">
               Sign in
             </button>
 
@@ -49,16 +49,16 @@
     </div>
 </template>
 <script>
+//local storage
+localStorage.setItem('casr','20')
+localStorage.removeItem('casr')
+document.cookie=`voiture=audi ;exires=${new Date(2020, 11, 17).toUTCString()}`
+document.cookie=`voiture= ;exires=${new Date(0).toUTCString()}`
+
+export default { 
 
 
-export default {
-  name:"Loginform",
-  data(){
-    return{
-      password:'',
-      email:''
-    }
-  }
+
 }
 </script>
 

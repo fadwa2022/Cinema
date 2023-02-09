@@ -18,9 +18,10 @@ class User
     $this->conn = $db;
   }
   // Get user
-  public function read(){
+  public function read()
+  {
     // Create query
-    $query ='SELECT * FROM `users`';
+    $query = 'SELECT * FROM `users`';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
@@ -29,9 +30,10 @@ class User
     $stmt->execute();
 
     return $stmt;
-}
+  }
   // Get Single user
-  public function read_single(){
+  public function read_single()
+  {
     // Create query
     $query = 'SELECT * FROM `users` WHERE `id`= ? LIMIT 0,1';
 
@@ -53,10 +55,10 @@ class User
     $this->id = $row['id'];
     $this->password = $row['password'];
     $this->role = $row['role'];
-
-}
+  }
   // Create user
-  public function create(){
+  public function create()
+  {
     // Create query
     $query = 'INSERT INTO users SET identifier = :identifier, full_name = :full_name, email = :email, password = :password';
 
@@ -84,9 +86,10 @@ class User
     printf("Error: %s.\n", $stmt->error);
 
     return false;
-}
+  }
   // update user
-  public function update(){
+  public function update()
+  {
     // Create query
     $query = 'UPDATE `users` SET `full_name`= :full_name ,`email`= :email ,`password`=:password  WHERE id=:id';
 
@@ -114,9 +117,10 @@ class User
     printf("Error: %s.\n", $stmt->error);
 
     return false;
-}
+  }
   // Delete user
-  public function delete() {
+  public function delete()
+  {
     // Create query
     $query = 'DELETE FROM `users` WHERE id = :id';
 
@@ -130,7 +134,7 @@ class User
     $stmt->bindParam(':id', $this->id);
 
     // Execute query
-    if($stmt->execute()) {
+    if ($stmt->execute()) {
       return true;
     }
 
@@ -138,7 +142,5 @@ class User
     printf("Error: %s.\n", $stmt->error);
 
     return false;
-}
-
-
+  }
 }
