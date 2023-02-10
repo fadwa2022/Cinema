@@ -37,6 +37,7 @@
                 <hr />
                 <div class="text-center">
                   <button
+                    @click="places(hall.id)"
                     type="button"
                     class="btn"
                     data-bs-toggle="modal"
@@ -66,7 +67,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              
+
             </div>
           </div>
           <!-- /.modal-content -->
@@ -85,6 +86,7 @@ export default {
   data() {
     return {
       hall: [],
+      place: []
     };
   },
   methods: {
@@ -98,9 +100,21 @@ export default {
           console.error(error);
         });
     },
+    places(id){
+
+      axios.get('http://localhost/cinema/backend/api/places/read_single.php', {
+  params: {
+    hall: id
+  }
+})
+.then(response => {
+          this.place = response.data;
+        })
+  .catch(error => console.error(error));
+    },
   },
   mounted() {
-    this.getDataFromAPI();
+    this.getDataFromAPI()
   },
 };
 </script>
