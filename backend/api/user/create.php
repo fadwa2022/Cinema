@@ -18,13 +18,16 @@
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
 
+  
+
   $user->identifier = md5(rand());
-  $user->full_name = $data->full_name;
+  $user->full_name = $data->name;
   $user->email = $data->email;
   $user->password = md5($data->password);
 
   // Create post
-  if($user->create()) {
+  if(!$user->full_name=="") {
+    $user->create();
     echo json_encode(
       array('message' => 'user Created : '.$user->identifier)
     );

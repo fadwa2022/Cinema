@@ -18,8 +18,9 @@
               <li><router-link to="/#venue" class="nav-link scrollto "><a href="">Venue</a></router-link></li>
               <li><router-link to="/#supporters" class="nav-link scrollto "><a href="">Sponsors</a></router-link></li>
               <li><router-link to="/#supporters" class="nav-link scrollto "><a href="">Contact</a></router-link></li>
-              <li><router-link to="/Login" class="nav-link scrollto "><a href="">Login</a></router-link></li>
-              <li><router-link to="/register" class="nav-link scrollto "><a href="">Register</a></router-link></li>
+              <li v-if="!display"><router-link  to="/Login" class="nav-link scrollto "><a href="">Login</a></router-link></li>
+              <li v-if="display"><router-link  to="" v-on:click="logout" class="nav-link scrollto "><a href="">Logout</a></router-link></li>
+              <li v-if="!display"><router-link to="/register" class="nav-link scrollto "><a href="">Register</a></router-link></li>
 
               <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
@@ -52,8 +53,33 @@
 <script>
 
 export default {
-  
+  name:'navbar',
+  data(){
+    return{
+      display : sessionStorage.getItem("SESSION")
+    }
+  },
+  methods:{
+    logout(){
+    sessionStorage.removeItem("SESSION");
+   this.$router.go({name:'Login'})
+         this.display = true
+  },
+  },
+ 
+
+  // mounted(){
+  //   let user = sessionStorage.getItem("SESSION");
+    
+  //   if(!user){
+  //    display=false
+  //    console.log('hi')
+  //   }
+  // }
+
 }
+ 
+  
 </script>
 
 

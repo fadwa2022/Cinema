@@ -44,29 +44,9 @@
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn buy-tickets scrollto" >
+            <button  class="btn buy-tickets scrollto" >
               Sign up
             </button>
-
-            <!-- Register buttons -->
-            <div class="text-center">
-              <p>or sign up with:</p>
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-google"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-github"></i>
-              </button>
-            </div>
           </form>
         </div>
       </div>
@@ -83,6 +63,7 @@ export default {
   el: '#app',
   data () {
     return {
+      counter :0,
       formData: {
         name: '',
         email: '',
@@ -92,12 +73,12 @@ export default {
   },
   methods: {
      submitForm() {
-      try {
-        const response = axios.post('http://localhost/cinema/backend/api/user/create.php', this.formData)
+      
         console.log(this.formData)
-      } catch (error) {
-        console.error(error)
-      }
+        const response = axios.post('http://localhost/cinema/backend/api/user/create.php', this.formData)
+           this.$router.push({name:'Login'})
+
+    
     }
   }
 }

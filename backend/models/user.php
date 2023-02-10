@@ -45,7 +45,7 @@ class User
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+     if(count($row)){
     // Set properties
     $this->identifier = $row['identifier'];
     $this->full_name = $row['full_name'];
@@ -58,6 +58,9 @@ class User
         return $row;
     } else {
         return false;
+    }}
+    else{
+      return false;
     }
 
   }
