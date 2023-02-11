@@ -66,8 +66,25 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body d-flex-colum  justify-content-between">
+    <div  v-for="place in place" :key="place.id"   
+               class="col-12" >      
+              
+                 <h1 class="max-w-2xl mb-2 font-light text-gray-500 lg:mb-2 md:text-lg lg:text-xl dark:text-gray-400">{{ place.id }}</h1>
 
+                  <img
+                    class="mr-8"
+                    src="assets/img/chair (1).png"
+                    alt="red"
+                  />
+                   <img
+                   @click="book(place.id)"
+                    class="mr-8"
+                    src="assets/img/chair (2).png"
+                    alt="red"
+                  />
+                </div>
+          
             </div>
           </div>
           <!-- /.modal-content -->
@@ -86,7 +103,7 @@ export default {
   data() {
     return {
       hall: [],
-      place: []
+      place: [],
     };
   },
   methods: {
@@ -100,21 +117,25 @@ export default {
           console.error(error);
         });
     },
-    places(id){
-
-      axios.get('http://localhost/cinema/backend/api/places/read_single.php', {
-  params: {
-    hall: id
-  }
-})
-.then(response => {
-          this.place = response.data;
+    places(id) {
+      axios
+        .get("http://localhost/cinema/backend/api/places/read_single.php", {
+          params: {
+            hall: id,
+          },
         })
-  .catch(error => console.error(error));
+        .then((response) => {
+          // console.log(response.data);
+          this.place = response.data;
+})
+        .catch((error) => console.error(error));
     },
+    book(place){
+      
+    }
   },
   mounted() {
-    this.getDataFromAPI()
+    this.getDataFromAPI();
   },
 };
 </script>
