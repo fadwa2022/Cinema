@@ -21,7 +21,7 @@ public $movie;
   public function read()
   {
     // Create query
-    $query ='SELECT * FROM `reservations` WHERE costumer=?';
+    $query ='SELECT r.id,r.costumer,r.seat,r.hall,r.date,m.title,m.image FROM reservations r,movies m WHERE costumer=? AND r.movie=m.idmovie;    ';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);

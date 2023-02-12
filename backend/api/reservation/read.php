@@ -13,7 +13,7 @@
   // Instantiate blog post object
   $reservations = new Reservation($db);
 
-  $reservations->costumer = isset($_GET['costumer']) ? $_GET['costumer'] : die();
+  $reservations->costumer = json_decode(file_get_contents("php://input"));
   // Blog post query
   $result = $reservations->read();
   // Get row count
@@ -33,6 +33,8 @@
         'seat' => $seat,
         'hall' => $hall,
         'date' => $date,
+        'title' => $title,
+        'image' => $image
 
       );
 

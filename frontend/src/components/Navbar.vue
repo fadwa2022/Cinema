@@ -21,6 +21,7 @@
               <li><router-link to="/#supporters" class="nav-link scrollto "><a href="">Contact</a></router-link></li>
               <li v-if="!display"><router-link  to="/Login" class="nav-link scrollto "><a href="">Login</a></router-link></li>
               <li v-if="display"><router-link  to="" v-on:click="logout" class="nav-link scrollto "><a href="">Logout</a></router-link></li>
+              <li v-if="display"><router-link  to="/Reservation"  class="nav-link scrollto "><a href="">Reservation</a></router-link></li>
               <li v-if="!display"><router-link to="/register" class="nav-link scrollto "><a href="">Register</a></router-link></li>
 
               <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -60,7 +61,7 @@ export default {
       display : sessionStorage.getItem("SESSION"),
       name:'',
       identite:'',
-    
+      id:''
     }
   },
   methods:{
@@ -77,6 +78,8 @@ export default {
     console.log(user.full_name)
     this.name= user.full_name
     this.identite= user.identifier
+    this.identite= user.id
+
 
   //   if(!user){
   //    display=false
