@@ -77,7 +77,7 @@ export default {
         const response = axios.post('http://localhost/cinema/backend/api/user/read_single.php', this.formData)
         const data= await response;
         const session=data.data;
-sessionStorage.setItem("SESSION", JSON.stringify(session));
+   sessionStorage.setItem("SESSION", JSON.stringify(session));
 
 // Récupérer le tableau depuis sessionStorage
 let sessionuser = JSON.parse(sessionStorage.getItem("SESSION"));

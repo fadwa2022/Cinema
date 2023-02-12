@@ -73,12 +73,15 @@
                  <h1 class="max-w-2xl mb-2 font-light text-gray-500 lg:mb-2 md:text-lg lg:text-xl dark:text-gray-400">{{ place.id }}</h1>
 
                   <img
+                  v-if="place.reserver == 1"
                     class="mr-8"
                     src="assets/img/chair (1).png"
                     alt="red"
                   />
+              
                    <img
-                   @click="book(place.id)"
+                   v-else
+                   @click="book(place.id,place.hall,place.movie)"
                     class="mr-8"
                     src="assets/img/chair (2).png"
                     alt="red"
@@ -98,12 +101,24 @@
 </template>
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
       hall: [],
       place: [],
+      DATA:{
+        costumer:'',
+        seat:'',
+        hall:'',
+        movie:''
+
+      },
+      reserer:{
+           id:'',
+           reserver:''
+      },
+      show: false,
+      message: ''
     };
   },
   methods: {
@@ -123,6 +138,7 @@ export default {
           params: {
             hall: id,
           },
+          
         })
         .then((response) => {
           // console.log(response.data);
@@ -130,12 +146,23 @@ export default {
 })
         .catch((error) => console.error(error));
     },
-    book(place){
-      
-    }
+    book(place,hall,movie){
+      let sessionuser = JSON.parse(sessionStorage.getItem("SESSION"));
+      this.DATA.costumer=sessionuser.id
+      this.DATA.seat=place
+      this.DATA.hall=hall
+      this.DATA.movie=movie
+    axios.post('http://localhost/cinema/backend/api/reservation/create.php', this.DATA)
+    this.reserer.id = place
+    this.reserer.reserver =1
+    axios.post('http://localhost/cinema/backend/api/places/update.php', this.reserer)
+    location.reload();
+  window.alert('Reservation successful');
+}
   },
   mounted() {
     this.getDataFromAPI();
+
   },
 };
 </script>

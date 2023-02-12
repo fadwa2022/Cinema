@@ -11,10 +11,11 @@
   $db = $database->connect();
 
   // Instantiate blog post object
-  $reservation = new Reservation($db);
+  $reservations = new Reservation($db);
 
+  $reservations->costumer = isset($_GET['costumer']) ? $_GET['costumer'] : die();
   // Blog post query
-  $result = $reservation->read();
+  $result = $reservations->read();
   // Get row count
   $num = $result->rowCount();
 
@@ -26,16 +27,17 @@
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
 
-      $user_item = array(
+      $reservations_item = array(
         'id' => $id,
-        'hall' => $hall,
-        'seat' => $seat,
         'costumer' => $costumer,
+        'seat' => $seat,
+        'hall' => $hall,
+        'date' => $date,
+
       );
 
       // Push to "data"
-      array_push($reservations_arr, $user_item);
-      // array_push($posts_arr['data'], $post_item);
+      array_push($reservations_arr, $reservations_item);
     }
 
     // Turn to JSON & output
@@ -44,6 +46,6 @@
   } else {
     // No Posts
     echo json_encode(
-      array('message' => 'No reservatios Found')
+      array('message' => 'No Found')
     );
   }

@@ -75,7 +75,7 @@ export default {
      submitForm() {
       
         console.log(this.formData)
-        const response = axios.post('http://localhost/cinema/backend/api/user/create.php', this.formData)
+         axios.post('http://localhost/cinema/backend/api/user/create.php', this.formData)
            this.$router.push({name:'Login'})
 
     

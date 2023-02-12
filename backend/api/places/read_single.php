@@ -31,6 +31,7 @@ $places->hall = isset($_GET['hall']) ? $_GET['hall'] : die();
         'id' => $id,
         'hall' => $hall,
         'reserver' => $reserver,
+        'movie'=>$movie
       );
 
       // Push to "data"

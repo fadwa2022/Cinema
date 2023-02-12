@@ -10,7 +10,7 @@ class Reservation
   public $seat;
   public $hall;
   public $date;
-
+public $movie;
   // Constructor with DB
   public function __construct($db)
   {
@@ -21,10 +21,12 @@ class Reservation
   public function read()
   {
     // Create query
-    $query ='SELECT * FROM `reservations`';
+    $query ='SELECT * FROM `reservations` WHERE costumer=?';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(1,$this->costumer);
 
     // Execute query
     $stmt->execute();
@@ -62,7 +64,7 @@ class Reservation
   public function create()
   {
     // Create query
-    $query = 'INSERT INTO reservations SET hall = :hall, seat = :seat, costumer = :costumer';
+    $query = 'INSERT INTO reservations SET hall = :hall, seat = :seat, costumer = :costumer, movie=:movie';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
@@ -71,11 +73,14 @@ class Reservation
     $this->hall = htmlspecialchars(strip_tags($this->hall));
     $this->seat = htmlspecialchars(strip_tags($this->seat));
     $this->costumer = htmlspecialchars(strip_tags($this->costumer));
+    $this->movie = htmlspecialchars(strip_tags($this->movie));
 
     // Bind data
     $stmt->bindParam(':hall', $this->hall);
     $stmt->bindParam(':seat', $this->seat);
     $stmt->bindParam(':costumer', $this->costumer);
+    $stmt->bindParam(':movie', $this->movie);
+
 
     // Execute query
     if ($stmt->execute()) {

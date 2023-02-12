@@ -6,30 +6,28 @@
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
   include_once '../../config/Database.php';
-  include_once '../../models/reservation.php';
+  include_once '../../models/places.php';
 
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
 
   // Instantiate blog post object
-  $user = new Reservation($db);
+  $user = new Places($db);
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
-  $user->hall = $data->hall;
-  $user->seat = $data->seat;
-  $user->costumer = $data->costumer;
-  $user->movie = $data->movie;
 
-
+  
+  $user->id = $data->id;
+  $user->reserver = $data->reserver;
   // Create post
-  if($user->create()) {
+  if($user->update()) {
     echo json_encode(
-      array('message' => 'reservation Created')
+      array('message' => 'place Updeted')
     );
   } else {
     echo json_encode(
-      array('message' => 'reservation Not Created')
+      array('message' => 'place Not Updeted')
     );
   }

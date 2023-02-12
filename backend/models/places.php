@@ -19,7 +19,7 @@ class Places
 public function read()
 {
     // Create query
-    $query = 'SELECT * FROM `places` WHERE `hall`= ?';
+    $query = 'SELECT p.id ,p.hall,p.reserver ,h.movie FROM places p ,halls h WHERE p.hall=? AND p.hall=h.id';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
@@ -33,4 +33,31 @@ public function read()
 }
 
 
+    // Create user
+    public function update()
+    {
+        // Create query
+        $query = 'UPDATE `places` SET `reserver`=:reserver WHERE id=:id';
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->reserver = htmlspecialchars(strip_tags($this->reserver));
+
+        // Bind data
+        $stmt->bindParam(':reserver', $this->reserver);
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute query
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        // Print error if something goes wrong
+        printf("Error: %s.\n", $stmt->error);
+
+        return false;
+    }
 }

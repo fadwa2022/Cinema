@@ -29,8 +29,9 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
   if($user){
     // Create array
   $user_arr = array(
+    'id'=>$user->id,
     'identifier' => $user->identifier,
-    'full_name ' => $user->full_name ,
+    'full_name' => $user->full_name,
     'email' => $user->email,
   ); // Make JSON
   print_r(json_encode($user_arr));

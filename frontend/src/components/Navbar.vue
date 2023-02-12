@@ -8,6 +8,7 @@
             <!-- Uncomment below if you prefer to use a text logo -->
             <!-- <h1><a href="index.html">The<span>Event</span></a></h1>-->
             <a href="index.html" class="scrollto"><img src="assets/img/logo.png" alt="" title=""></a>
+            <h3 class="nav-link scrollto active ">{{name}}</h3>
           </div>
     
           <nav id="navbar" class="navbar order-last order-lg-0">
@@ -56,7 +57,10 @@ export default {
   name:'navbar',
   data(){
     return{
-      display : sessionStorage.getItem("SESSION")
+      display : sessionStorage.getItem("SESSION"),
+      name:'',
+      identite:'',
+    
     }
   },
   methods:{
@@ -68,14 +72,17 @@ export default {
   },
  
 
-  // mounted(){
-  //   let user = sessionStorage.getItem("SESSION");
-    
+  mounted(){
+   let user =JSON.parse(sessionStorage.getItem("SESSION"));
+    console.log(user.full_name)
+    this.name= user.full_name
+    this.identite= user.identifier
+
   //   if(!user){
   //    display=false
   //    console.log('hi')
   //   }
-  // }
+  }
 
 }
  
