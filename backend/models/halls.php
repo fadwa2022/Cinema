@@ -22,7 +22,7 @@ class Halls
     public function read()
     {
         // Create query
-        $query = 'SELECT * FROM halls p, movies m WHERE p.movie = m.idmovie';
+        $query = 'SELECT * FROM halls p, movies m WHERE p.movie = m.id_movie';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);

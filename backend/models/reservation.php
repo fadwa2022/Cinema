@@ -10,7 +10,7 @@ class Reservation
   public $seat;
   public $hall;
   public $date;
-public $movie;
+  public $movie;
   // Constructor with DB
   public function __construct($db)
   {
@@ -21,7 +21,7 @@ public $movie;
   public function read()
   {
     // Create query
-    $query ='SELECT r.id,r.costumer,r.seat,r.hall,r.date,m.title,m.image FROM reservations r,movies m WHERE costumer=? AND r.movie=m.idmovie;    ';
+    $query ='SELECT r.id,r.costumer,r.seat,r.hall,r.date,m.title,m.image FROM reservations r,movies m WHERE costumer=? AND r.movie=m.id_movie;    ';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);

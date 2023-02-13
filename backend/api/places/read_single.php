@@ -14,7 +14,7 @@
   $places = new Places($db);
 
 $places->hall = isset($_GET['hall']) ? $_GET['hall'] : die();
-  // Blog post query
+// Blog post query
   $result = $places->read();
   // Get row count
   $num = $result->rowCount();
