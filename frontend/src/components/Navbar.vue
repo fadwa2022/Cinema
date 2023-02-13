@@ -74,16 +74,16 @@ export default {
  
 
   mounted(){
+    
    let user =JSON.parse(sessionStorage.getItem("SESSION"));
-    this.name= user.full_name
+  if(user){
+     this.name= user.full_name
     this.identite= user.identifier
     this.identite= user.id
+    } 
 
 
-  //   if(!user){
-  //    display=false
-  //    console.log('hi')
-  //   }
+  
   }
 
 }
