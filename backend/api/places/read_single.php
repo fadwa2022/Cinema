@@ -13,7 +13,7 @@
   // Instantiate blog post object
   $places = new Places($db);
 
-$places->hall = isset($_GET['hall']) ? $_GET['hall'] : die();
+$places->movie = isset($_GET['movie']) ? $_GET['movie'] : die();
 // Blog post query
   $result = $places->read();
   // Get row count
@@ -29,9 +29,8 @@ $places->hall = isset($_GET['hall']) ? $_GET['hall'] : die();
 
       $places_item = array(
         'id' => $id,
-        'hall' => $hall,
+        'movie' => $movie,
         'reserver' => $reserver,
-        'movie'=>$movie
       );
 
       // Push to "data"

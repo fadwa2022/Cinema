@@ -9,6 +9,10 @@ class Movies
     public $title;
     public $image;
     public $description;
+    public $Mdate;
+    public $ID_ha;
+
+    
 
 
     // Constructor with DB
@@ -21,39 +25,31 @@ class Movies
     public function read()
     {
         // Create query
-        $query = 'SELECT * FROM `movies`';
-
+        $query = 'SELECT * FROM `movie`';
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
         // Execute query
         $stmt->execute();
-
         return $stmt;
     }
 
     // Get Single user
     public function read_single()
     {
+        
         // Create query
-        $query = 'SELECT * FROM `movies` WHERE `id`= ? LIMIT 0,1';
+        $query = 'SELECT * FROM movie WHERE Mdate = :Mdate ';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
-        // Bind ID
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(':Mdate', $this->Mdate);
 
         // Execute query
         $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Set properties
-        $this->description = $row['description'];
-        $this->image = $row['image'];
-        $this->title = $row['title'];
-        $this->id = $row['id'];
+      
+        return $stmt;
        
     }
 
@@ -61,7 +57,7 @@ class Movies
     public function create()
     {
         // Create query
-        $query = 'INSERT INTO movies SET description = :description, image = :image, title = :title';
+        $query = 'INSERT INTO movie SET description = :description, image = :image, title = :title';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -91,7 +87,7 @@ class Movies
     public function update()
     {
         // Create query
-        $query = 'UPDATE `movies` SET `image`= :image ,`description`= :description ,`title`=:title  WHERE id=:id';
+        $query = 'UPDATE `movie` SET `image`= :image ,`description`= :description ,`title`=:title  WHERE id=:id';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -122,7 +118,7 @@ class Movies
     public function delete()
     {
         // Create query
-        $query = 'DELETE FROM `movies` WHERE id = :id';
+        $query = 'DELETE FROM `movie` WHERE id = :id';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);

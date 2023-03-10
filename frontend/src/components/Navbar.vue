@@ -80,10 +80,7 @@ export default {
      this.name= user.full_name
     this.identite= user.identifier
     this.identite= user.id
-    } 
-
-
-  
+    }
   }
 
 }

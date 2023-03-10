@@ -15,6 +15,7 @@
 
   // Blog post query
   $result = $halls->read();
+  
   // Get row count
   $num = $result->rowCount();
 

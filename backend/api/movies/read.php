@@ -24,18 +24,27 @@
     $movies_arr = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+ 
       extract($row);
 
-      $user_item = array(
-        'id' => $id,
-        'title' => $title,
-        'image' => $image,
-        'description' => $description,
-      );
+     $dateBaseDeDonnees = $row['Mdate'];
+     
+     $dateAujourdhui = date('Y-m-d');
+if($dateBaseDeDonnees == $dateAujourdhui){
+  $movie_item = array(
+    'id' => $id,
+    'title' => $title,
+    'image' => $image,
+    'description' => $description,
+    'date'=>$Mdate,
+    'id_hall'=>$ID_ha
+  );
 
-      // Push to "data"
-      array_push($movies_arr, $user_item);
-      // array_push($posts_arr['data'], $post_item);
+  // Push to "data"
+  array_push($movies_arr, $movie_item);
+}
+    
+    
     }
 
     // Turn to JSON & output

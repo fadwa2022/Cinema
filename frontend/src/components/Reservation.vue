@@ -81,15 +81,21 @@ export default {
       },
  methods:{
      async reservations() {
-      try {
-        console.log(this.id)
-        const response = axios.post('http://localhost/cinema/backend/api/reservation/read.php',this.id)
-        const data= await response;
-        this.reservation = JSON.parse(JSON.stringify(data.data));
-        // console.log(this.reservation[0].id)
-  } catch (error) {
-        console.error(error)
-      }
+    console.log(this.id);
+            axios
+        .get("http://localhost/cinema/backend/api/reservation/read.php", {
+          params: {
+            costumer: this.id,
+          },
+          
+        })
+        .then((response) => {
+          // console.log(response.data);
+           this.reservation  = response.data;
+})
+        .catch((error) => console.error(error));
+
+    
     },
  annuler(id,place){
      try {
@@ -107,15 +113,11 @@ window.alert('Reservation Cancel successful');
  },
   mounted() {
     let user =JSON.parse(sessionStorage.getItem("SESSION"));
-    console.log(user.full_name)
     this.name= user.full_name
     this.identite= user.identifier
     this.id= user.id
-        this.reservations();
-
-
+    this.reservations();
   },
 };
 </script>
 
-<style scoped></style>

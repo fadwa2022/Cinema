@@ -17,7 +17,6 @@
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
-  $user->hall = $data->hall;
   $user->seat = $data->seat;
   $user->costumer = $data->costumer;
   $user->movie = $data->movie;

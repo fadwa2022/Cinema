@@ -6,7 +6,7 @@ class Places
 
   // Post Properties
   public $id;
-  public $hall;
+  public $movie;
   public $reserver;
 
 
@@ -19,11 +19,11 @@ class Places
 public function read()
 {
     // Create query
-    $query = 'SELECT p.id ,p.hall,p.reserver ,h.movie FROM places p ,halls h WHERE p.hall=? AND p.hall=h.id';
+    $query = 'SELECT p.id ,p.movie,p.reserver ,m.id as id_movie FROM places p ,movie m WHERE p.movie=? AND p.movie=m.id';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(1, $this->hall);
+    $stmt->bindParam(1, $this->movie);
 
 
     // Execute query

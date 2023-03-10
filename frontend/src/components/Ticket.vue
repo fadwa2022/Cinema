@@ -1,8 +1,10 @@
 <template>
   <div id="app">
+    
     <!-- ======= Buy Ticket Section ======= -->
     <section id="buy-tickets" class="section-with-bg">
       <div class="container" data-aos="fade-up">
+        
         <div class="section-header">
           <h2>Buy Tickets</h2>
           <p>
@@ -10,7 +12,14 @@
             aut.
           </p>
         </div>
-
+       <form>
+            <div class="form-group">
+                <label for="datePicker">Sélectionnez une date :</label>
+                <input type="date" class="form-control" id="datePicker" name="datePicker" v-on:change="movie($event.target.value)">
+            </div>
+        </form>
+        
+<br>
         <div class="row">
           <div
             v-for="hall in hall"
@@ -70,7 +79,7 @@
     <div  v-for="place in place" :key="place.id"   
                class="col-12" >      
               
-                 <h1 class="max-w-2xl mb-2 font-light text-gray-500 lg:mb-2 md:text-lg lg:text-xl dark:text-gray-400">{{ place.id }}</h1>
+                 <h1 class="max-w-2xl mb-2 font-light text-gray-500 lg:mb-2 md:text-lg lg:text-xl dark:text-gray-400">{{place.id}}</h1>
 
                   <img
                   v-if="place.reserver == 1"
@@ -81,7 +90,7 @@
               
                    <img
                    v-else
-                   @click="book(place.id,place.hall,place.movie)"
+                   @click="book(place.id,place.movie)"
                     class="mr-8"
                     src="assets/img/chair (2).png"
                     alt="red"
@@ -124,8 +133,10 @@ export default {
   methods: {
     getDataFromAPI() {
       axios
-        .get("http://localhost/cinema/backend/api/halls/read.php")
+        .get("http://localhost/cinema/backend/api/movies/read.php")
         .then((response) => {
+          // console.log(response.data)
+
           this.hall = response.data;
         })
         .catch((error) => {
@@ -133,10 +144,10 @@ export default {
         });
     },
     places(id) {
-      axios
+            axios
         .get("http://localhost/cinema/backend/api/places/read_single.php", {
           params: {
-            hall: id,
+            movie: id,
           },
           
         })
@@ -146,15 +157,46 @@ export default {
 })
         .catch((error) => console.error(error));
     },
-    book(place,hall,movie){
+    movie(Mdate) {
+      const selectedDate = new Date(Mdate);
+      const today = new Date();
+      const dayOfWeek = selectedDate.getDay();
+      
+      if (dayOfWeek === 0) {
+        alert("Vous ne pouvez pas sélectionner un dimanche.");
+        return;
+      }
+      
+      if (selectedDate < today) {
+        alert("Le cinéma est fermé le dimanche.");
+        return;
+      }
+      
+      console.log(Mdate);
+      axios
+        .get("http://localhost/cinema/backend/api/movies/read_single.php", {
+          params: {
+            Mdate: Mdate,
+          },
+          
+        })
+.then(response => {
+  console.log(response.data);
+   this.hall = response.data;
+
+})
+.catch(error => {
+  console.log(error);
+}) },
+  book(place,movie){
       let sessionuser = JSON.parse(sessionStorage.getItem("SESSION"));
       this.DATA.costumer=sessionuser.id
       this.DATA.seat=place
-      this.DATA.hall=hall
+      // this.DATA.hall=hall
       this.DATA.movie=movie
     axios.post('http://localhost/cinema/backend/api/reservation/create.php', this.DATA)
     this.reserer.id = place
-    this.reserer.reserver =1
+    this.reserer.reserver = 1
     axios.post('http://localhost/cinema/backend/api/places/update.php', this.reserer)
     location.reload();
   window.alert('Reservation successful');

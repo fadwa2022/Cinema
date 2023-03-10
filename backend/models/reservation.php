@@ -8,7 +8,6 @@ class Reservation
   public $id;
   public $costumer;
   public $seat;
-  public $hall;
   public $date;
   public $movie;
   // Constructor with DB
@@ -20,17 +19,18 @@ class Reservation
   // Get user
   public function read()
   {
+
     // Create query
-    $query ='SELECT r.id,r.costumer,r.seat,r.hall,r.date,m.title,m.image FROM reservations r,movies m WHERE costumer=? AND r.movie=m.id_movie;    ';
+    $query ='SELECT r.id,r.costumer,r.seat,r.date,r.movie as id_movie ,m.title,m.image FROM reservations r,movie m WHERE costumer=:costumer AND r.movie=m.id;';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(1,$this->costumer);
-
+    $stmt->bindParam(':costumer', $this->costumer);
+   
     // Execute query
     $stmt->execute();
-
+ 
     return $stmt;
   }
 
@@ -53,7 +53,6 @@ class Reservation
 
     // Set properties
     $this->date = $row['date'];
-    $this->hall = $row['hall'];
     $this->seat = $row['seat'];
     $this->id = $row['id'];
     $this->costumer = $row['costumer'];
@@ -64,19 +63,17 @@ class Reservation
   public function create()
   {
     // Create query
-    $query = 'INSERT INTO reservations SET hall = :hall, seat = :seat, costumer = :costumer, movie=:movie';
+    $query = 'INSERT INTO reservations SET  seat = :seat, costumer = :costumer, movie=:movie';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
 
     // Clean data
-    $this->hall = htmlspecialchars(strip_tags($this->hall));
     $this->seat = htmlspecialchars(strip_tags($this->seat));
     $this->costumer = htmlspecialchars(strip_tags($this->costumer));
     $this->movie = htmlspecialchars(strip_tags($this->movie));
 
     // Bind data
-    $stmt->bindParam(':hall', $this->hall);
     $stmt->bindParam(':seat', $this->seat);
     $stmt->bindParam(':costumer', $this->costumer);
     $stmt->bindParam(':movie', $this->movie);
